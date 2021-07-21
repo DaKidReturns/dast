@@ -5,8 +5,10 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-static int borderpx = 2;
+static char *font = "Sarasa Term J:pixelsize=18:antialias=true:autohint=true";
+//static char *font = "UbuntuMono:pixelsize=18:antialias=true:autohint=true";
+//static char *font = "ProggyCleanTT:pixelsize=24:style=Regular:antialias=true:autohint=true";
+static int borderpx = 20;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -91,12 +93,34 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
+unsigned int tabspaces = 4;
 
 /* Terminal colors (16 first used in escape sequence) */
+/* static const char *colorname[] = {
+
+  // 8 normal colors  
+  [0] = "#282828", // hard contrast: #1d2021 / soft contrast: #32302f 
+  [1] = "#ea6962", // red     
+  [2] = "#a9b665", // green   
+  [3] = "#d8a657", // yellow  
+  [4] = "#3d7267",//"#7daea3",  blue    
+  [5] = "#d3869b", // magenta 
+  [6] = "#89b482", // cyan    
+  [7] = "#d4be98", // white   
+
+  // 8 bright colors 
+  [8]  = "#928374",  black   
+  [9]  = "#d63128","#ef938e", red     
+  [10] = "#72d81e","#bbc585", green   
+  [11] = "#e1bb7e",  yellow  
+  [12] = "#4c9b96","#9dc2ba", blue    
+  [13] = "#e1acbb",  magenta 
+  [14] = "#a7c7a2",  cyan    
+  [15] = "#e2d3ba",  white   
+};*/
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"black",
+	"#282828",
 	"red3",
 	"green3",
 	"yellow3",
@@ -106,7 +130,7 @@ static const char *colorname[] = {
 	"gray90",
 
 	/* 8 bright colors */
-	"gray50",
+	"#928374",
 	"red",
 	"green",
 	"yellow",
@@ -122,14 +146,13 @@ static const char *colorname[] = {
 	"#555555",
 };
 
-
 /*
  * Default colors (colorname index)
- * foreground, background, cursor, reverse cursor
+ * foreground, background, cursor
  */
-unsigned int defaultfg = 7;
+unsigned int defaultfg = 15;
 unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
+static unsigned int defaultcs = 15;
 static unsigned int defaultrcs = 257;
 
 /*
@@ -142,11 +165,24 @@ static unsigned int defaultrcs = 257;
 static unsigned int cursorshape = 2;
 
 /*
+ * Whether to use pixel geometry or cell geometry
+ */
+
+static Geometry geometry = CellGeometry;
+
+/*
  * Default columns and rows numbers
  */
 
 static unsigned int cols = 80;
-static unsigned int rows = 24;
+static unsigned int rows = 20;
+
+/*
+ * Default width and height (including borders!)
+ */
+
+static unsigned int width = 564;
+static unsigned int height = 364;
 
 /*
  * Default colour and shape of the mouse cursor
@@ -182,7 +218,7 @@ static MouseShortcut mshortcuts[] = {
 };
 
 /* Internal keyboard shortcuts. */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TERMMOD (ControlMask|ShiftMask)
 
 static Shortcut shortcuts[] = {
